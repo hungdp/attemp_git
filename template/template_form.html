@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Admin - Template form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+	<link rel="shortcut icon" href="img/favicon.ico" />
+    <!-- styles -->
+    <link href="css/bootstrap.css" rel="stylesheet" />
+	<link href="css/bootstrap-responsive.css" rel="stylesheet" />
+	<link href="css/content.css" rel="stylesheet" />
+	<link href="css/content.css" rel="stylesheet" />
+    <link href="css/jqueryui/jquery.ui.all.css" rel="stylesheet" />
+</head>
+<body>
+	<header>
+        <div class="container">
+            <a class="logo" href="#"><img src="img/logo.png" alt="APPOTA" /></a>
+            <div class="menu pull-right">
+                <a href="#">APPOTA</a>
+                |
+                <a href="#">Đăng xuất</a>
+                (<span style="color:#d9251d;">ps.hailt</span>)
+            </div>
+    	</div><!--container-->
+    </header><!--header-->
+    <div class="navbar navbar-inverse navbar-static-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</a>
+				<a class="brand" href="#">APPOTA</a>
+				<div class="nav-collapse collapse">
+					<ul class="nav">
+						<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Giao dịch<b class="caret"></b></a>
+                        	<ul class="dropdown-menu">
+                            	<li><a href="#">Hoá đơn</a></li>
+                            </ul>
+                        </li>
+						<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Menu<b class="caret"></b></a>
+                        	<ul class="dropdown-menu">
+                            	<li><a href="#">Menu trang chủ</a></li>
+                                <li><a href="#">Menu tin tức</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Sản phẩm<b class="caret"></b></a>
+                        	<ul class="dropdown-menu">
+                            	<li><a href="#">Sản phẩm</a></li>
+                                <li><a href="#">Danh mục</a></li>
+                                <li><a href="#">Thương hiệu</a></li>
+                                <li><a href="#">Nhà cung cấp</a></li>
+                                <li><a href="#">Cam kết bán hàng</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Tin tức<b class="caret"></b></a>
+                        	<ul class="dropdown-menu">
+                            	<li><a href="#">Tin tức</a></li>
+                                <li><a href="#">Danh mục tin tức</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Marketing<b class="caret"></b></a>
+                        	<ul class="dropdown-menu">
+                            	<li><a href="#">Banner</a></li>
+                                <li><a href="#">Trang khuyến mại</a></li>
+                                <li><a href="#">Coupon</a></li>
+                                <li><a href="#">Giảm giá</a></li>
+                                <li><a href="#">Quà tặng</a></li>
+                                <li><a href="#">Landing khuyến mại</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Support<b class="caret"></b></a>
+                        	<ul class="dropdown-menu">
+                            	<li><a href="#">Danh sách khách hàng</a></li>
+                                <li><a href="#">Liên hệ</a></li>
+                                <li><a href="#">Danh mục hỏi đáp</a></li>
+                                <li><a href="#">Hỏi đáp</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Người dùng<b class="caret"></b></a>
+                        	<ul class="dropdown-menu">
+                            	<li><a href="#">Danh sách người dùng</a></li>
+                                <li><a href="#">Quản lý phân quyền</a></li>
+                                <li><a href="#">Nhóm người dùng</a></li>
+                                <li><a href="#">Danh sách quyền</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Hệ thống<b class="caret"></b></a>
+                        	<ul class="dropdown-menu">
+                            	<li><a href="#">Quản lý file upload</a></li>
+                                <li><a href="#">Xóa cache hệ thống</a></li>
+                                <li><a href="#">Map danh mục</a></li>
+                                <li><a href="#">Danh sách người bán</a></li>
+                            </ul>
+                        </li>
+					</ul>
+				</div><!--/.nav-collapse -->
+			</div>
+		</div>
+    </div><!--navbar-->
+    <div class="container">
+        <div class="folder-header">
+            <h3>Quản trị sản phẩm</h3>
+        </div><!--folder-header-->
+    	<div class="folder-tab">
+    	    <ul class="nav nav-tabs">
+                <li class="active"><a href="#">Thêm sản phẩm mới</a></li>
+            </ul>
+        </div><!--folder-tab-->
+    	<div class="folder-content">
+            <div class="form-horizontal">
+                <div class="control-group">
+                    <label class="control-label">Tên sản phẩm:</label>
+                    <div class="controls">
+                        <input type="text" name="" class="input-xlarge" />
+                    </div>
+                </div><!--control-group-->
+                <div class="control-group error">
+                    <label class="control-label">ID sản phẩm:</label>
+                    <div class="controls">
+                        <input type="text" name="" class="input-xlarge" />
+                        <span class="help-inline">ID chưa đúng</span>
+                        <span class="help-block">ID sản phẩm nhập chưa đúng</span>
+                    </div>
+                </div><!--control-group-->
+                <div class="control-group">
+                	<label class="control-label">Lựa chọn:</label>
+                    <div class="controls">
+                        <label class="checkbox inline">
+                            <input type="checkbox" id="inlineCheckbox1" value="option1" /> Lựa chọn 1
+                        </label>
+                        <label class="checkbox inline">
+                            <input type="checkbox" id="inlineCheckbox2" value="option2" /> Lựa chọn 2
+                        </label>
+                        <label class="checkbox inline">
+                            <input type="checkbox" id="inlineCheckbox3" value="option3" /> Lựa chọn 3
+                        </label>   
+                    </div>
+                </div><!--control-group-->
+                <div class="control-group">
+                    <label class="control-label">Tuỳ chọn:</label>
+                    <div class="controls">
+                        <label class="radio">
+                        	<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked />
+                        	Tuỳ chọn 1
+                        </label>
+                        <label class="radio">
+                        	<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2" />
+                        	Tuỳ chọn 2
+                        </label>
+                    </div>
+                </div><!--control-group-->
+                <div class="control-group">
+                    <label class="control-label">Ảnh đại diện:</label>
+                    <div class="controls">
+                        <input type="file" id="file" />
+                        <span class="help-block">Ảnh có kích thước max 800x1024px</span>
+                    </div>
+                </div><!--control-group-->
+                <div class="control-group">
+                    <label class="control-label">Các ảnh khác:</label>
+                    <div class="controls">
+                        <input id="lefile" type="file" style="display:none" />
+                        <div class="input-append">
+                           <input id="photoCover" class="input-large" type="text" />
+                           <a class="btn" onclick="$('#lefile').click();">Chọn</a>
+                        </div>
+                        <span class="help-block">Ảnh có kích thước max 800x1024px</span> 
+                    </div>
+                </div><!--control-group-->
+                <div class="control-group">
+                    <label class="control-label">Giá sản phẩm:</label>
+                    <div class="controls">
+                        <input type="text" name="" class="input-medium" /><span class="help-inline">VD: 400.000 VND</span>
+                    </div>
+                </div><!--control-group-->
+                <div class="control-group">
+                    <label class="control-label">Thuộc danh mục:</label>
+                    <div class="controls">
+                        <select class="input-xlarge">
+							<option>Chưa kiểm duyệt</option>
+							<option>Áo khoác</option>
+                            <option>--Áo khoác nam</option>
+                            <option>--Áo khoác nữ</option>
+                            <option>Áo sơ mi</option>
+                            <option>--Áo sơ mi nam</option>
+                            <option>--Áo sơ mi nữ</option>
+						</select>
+                    </div>
+                </div><!--control-group-->
+                <div class="control-group">
+                    <label class="control-label">Mô tả:</label>
+                    <div class="controls">
+                        <textarea rows="3" class="input-xlarge"></textarea>
+                    </div>
+                </div><!--control-group-->
+                <hr />
+                <div class="control-group">
+                    <div class="controls">
+                        <button type="submit" class="btn btn-primary">Thêm sản phẩm</button>
+						<button type="button" class="btn">Huỷ bỏ</button>
+                    </div>
+                </div><!--control-group-->
+            </div><!--form-horizontal-->
+        </div><!--folder-content-->
+		<hr />
+		<footer>
+			<p>&copy; APPOTA 2012</p>
+		</footer>
+    </div><!--container-->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/jquery.ui.core.js"></script>
+    <script src="js/jquery.ui.datepicker.js"></script>
+    <script src="js/jquery.ui.datepicker-vi.js"></script>
+    <script src="js/datepicker.js"></script>
+    <script type="text/javascript">
+		$('#lefile').change(function() {
+		   $('#photoCover').val($(this).val());
+		});
+	</script>
+</body>
+</html>

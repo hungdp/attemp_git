@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Admin - Template table Expand</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+	<link rel="shortcut icon" href="img/favicon.ico" />
+    <!-- styles -->
+    <link href="css/bootstrap.css" rel="stylesheet" />
+	<link href="css/bootstrap-responsive.css" rel="stylesheet" />
+	<link href="css/content.css" rel="stylesheet" />
+    <link href="css/jqueryui/jquery.ui.all.css" rel="stylesheet" />
+</head>
+<body>
+	<header>
+        <div class="container">
+            <a class="logo" href="#"><img src="img/logo.png" alt="APPOTA" /></a>
+            <div class="menu pull-right">
+                <a href="#">APPOTA</a>
+                |
+                <a href="#">Đăng xuất</a>
+                (<span style="color:#d9251d;">ps.hailt</span>)
+            </div>
+    	</div><!--container-->
+    </header><!--header-->
+    <div class="navbar navbar-inverse navbar-static-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</a>
+				<a class="brand" href="#">APPOTA</a>
+				<div class="nav-collapse collapse">
+					<ul class="nav">
+						<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Giao dịch<b class="caret"></b></a>
+                        	<ul class="dropdown-menu">
+                            	<li><a href="#">Hoá đơn</a></li>
+                            </ul>
+                        </li>
+						<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Menu<b class="caret"></b></a>
+                        	<ul class="dropdown-menu">
+                            	<li><a href="#">Menu trang chủ</a></li>
+                                <li><a href="#">Menu tin tức</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Sản phẩm<b class="caret"></b></a>
+                        	<ul class="dropdown-menu">
+                            	<li><a href="#">Sản phẩm</a></li>
+                                <li><a href="#">Danh mục</a></li>
+                                <li><a href="#">Thương hiệu</a></li>
+                                <li><a href="#">Nhà cung cấp</a></li>
+                                <li><a href="#">Cam kết bán hàng</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Tin tức<b class="caret"></b></a>
+                        	<ul class="dropdown-menu">
+                            	<li><a href="#">Tin tức</a></li>
+                                <li><a href="#">Danh mục tin tức</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Marketing<b class="caret"></b></a>
+                        	<ul class="dropdown-menu">
+                            	<li><a href="#">Banner</a></li>
+                                <li><a href="#">Trang khuyến mại</a></li>
+                                <li><a href="#">Coupon</a></li>
+                                <li><a href="#">Giảm giá</a></li>
+                                <li><a href="#">Quà tặng</a></li>
+                                <li><a href="#">Landing khuyến mại</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Support<b class="caret"></b></a>
+                        	<ul class="dropdown-menu">
+                            	<li><a href="#">Danh sách khách hàng</a></li>
+                                <li><a href="#">Liên hệ</a></li>
+                                <li><a href="#">Danh mục hỏi đáp</a></li>
+                                <li><a href="#">Hỏi đáp</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Người dùng<b class="caret"></b></a>
+                        	<ul class="dropdown-menu">
+                            	<li><a href="#">Danh sách người dùng</a></li>
+                                <li><a href="#">Quản lý phân quyền</a></li>
+                                <li><a href="#">Nhóm người dùng</a></li>
+                                <li><a href="#">Danh sách quyền</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Hệ thống<b class="caret"></b></a>
+                        	<ul class="dropdown-menu">
+                            	<li><a href="#">Quản lý file upload</a></li>
+                                <li><a href="#">Xóa cache hệ thống</a></li>
+                                <li><a href="#">Map danh mục</a></li>
+                                <li><a href="#">Danh sách người bán</a></li>
+                            </ul>
+                        </li>
+					</ul>
+				</div><!--/.nav-collapse -->
+			</div>
+		</div>
+    </div><!--navbar-->
+    <div class="container">
+        <div class="folder-header">
+            <h3>Quản trị người dùng</h3>
+        </div><!--folder-header-->
+    	<div class="folder-tab">
+    	    <ul class="nav nav-tabs">
+                <li class="active"><a href="#">Danh sách người dùng</a></li>
+            </ul>
+        </div><!--folder-tab-->
+    	<div class="folder-content">
+            <div class="form-horizontal">
+            	<div class="control-group">
+                    <button type="button" class="btn">Thêm thành viên mới</button>
+                    <button type="button" class="btn">Thêm nhóm thành viên</button>
+                </div><!--control-group-->
+                <hr />
+                <div class="row-fluid">
+                	<div class="span6">
+                    	<div class="control-group">
+                            <label class="control-label">Từ khoá:</label>
+                            <div class="controls">
+                                <input type="text" name="" class="input-xlarge" />
+                            </div>
+                        </div><!--control-group-->
+                        <div class="control-group">
+                            <label class="control-label">Chọn danh mục:</label>
+                            <div class="controls">
+                                <select class="input-xlarge">
+                                    <option>Chưa kiểm duyệt</option>
+                                    <option>Áo khoác</option>
+                                    <option>--Áo khoác nam</option>
+                                    <option>--Áo khoác nữ</option>
+                                    <option>Áo sơ mi</option>
+                                    <option>--Áo sơ mi nam</option>
+                                    <option>--Áo sơ mi nữ</option>
+                                </select>
+                            </div>
+                        </div><!--control-group-->
+                        <div class="control-group">
+                            <div class="controls">
+                                <button type="button" class="btn">Lọc kết quả</button>
+                            </div>
+                        </div><!--control-group-->
+                    </div><!--span6-->
+                	<div class="span6">
+                    	<div class="control-group">
+                            <label class="control-label">Lựa chọn:</label>
+                            <div class="controls">
+                                <label class="checkbox inline">
+                                    <input type="checkbox" id="inlineCheckbox1" value="option1" /> Ngày
+                                </label>  
+                            </div>
+                        </div><!--control-group-->
+                    	<div class="control-group">
+                            <label class="control-label">Từ ngày:</label>
+                            <div class="controls">
+                                <input type="text" name="" class="input-small datepicker" />
+                            </div>
+                        </div><!--control-group-->
+                        <div class="control-group">
+                            <label class="control-label">Đến ngày:</label>
+                            <div class="controls">
+                                <input type="text" name="" class="input-small datepicker" />
+                            </div>
+                        </div><!--control-group-->
+                    </div><!--span6-->
+                </div><!--row-fluid-->
+                <hr />
+                <div class="control-group">
+                    <span class="control-left">Có <b>224472</b> kết quả</span>
+                    <div class="btn-group pull-right" data-toggle="buttons-radio">
+                        <button class="btn">10</button>
+                        <button class="btn">50</button>
+                        <button class="btn">100</button>
+                        <button class="btn">Tất cả</button>
+                    </div>
+                    <span class="control-right">Hiển thị:&nbsp;&nbsp;</span>
+                </div><!--control-group-->
+                <table border="0" cellpadding="0" cellspacing="0" class="table table-bordered table-hover">
+					<tbody>
+						<tr class="info">
+							<td width="3%"><input name="check-all" type="checkbox" value="all" /></td>
+							<td width="25%"><b>Tên người dùng</b></td>
+							<td width="40%"><b>Ghi chú</b></td>
+							<td width="15%" style="text-align:center;"><b>Hiển thị</b></td>
+							<td width="10%" style="text-align:center;"><b>Sửa</b></td>
+							<td width="7%" style="text-align:center;"><b>Xóa</b></td>
+						</tr>
+						<tr>
+							<td><input name="check-one" type="checkbox" value="1" /></td>
+							<td style="text-align:left"><a class="icon-plus-new"></a>leehaira</td>
+							<td><p>Cửa hàng 1</p></td>
+							<td style="text-align:center;"><span class="action-success"></span></td>
+							<td style="text-align:center;"><a href="">Sửa</a></td>
+							<td style="text-align:center;"><a href="">Xóa</a></td>
+						</tr>
+						<tr>
+							<td><input name="check-one" type="checkbox" value="1" /></td>
+							<td style="text-align:left"><a class="icon-plus-new"></a>leehaira</td>
+							<td><p>Cửa hàng 1</p></td>
+							<td style="text-align:center;"><span class="action-cancel"></span></td>
+							<td style="text-align:center;"><a href="">Sửa</a></td>
+							<td style="text-align:center;"><a href="">Xóa</a></td>
+						</tr>
+						<tr>
+							<td><input name="check-one" type="checkbox" value="1" /></td>
+							<td style="text-align:left"><a class="icon-minus-new"></a>leehaira</td>
+							<td><p>Cửa hàng 1</p></td>
+							<td style="text-align:center;"><span class="action-success"></span></td>
+							<td style="text-align:center;"><a href="">Sửa</a></td>
+							<td style="text-align:center;"><a href="">Xóa</a></td>
+						</tr>
+						<tr class="tr-1">
+							<td><input name="check-one" type="checkbox" value="1" /></td>
+							<td style="text-align:left">--<a class="icon-minus-new"></a>leehaira</td>
+							<td><p>Cửa hàng 1</p></td>
+							<td style="text-align:center;"><span class="action-cancel"></span></td>
+							<td style="text-align:center;"><a href="">Sửa</a></td>
+							<td style="text-align:center;"><a href="">Xóa</a></td>
+						</tr>
+						<tr class="tr-2">
+							<td><input name="check-one" type="checkbox" value="1" /></td>
+							<td style="text-align:left">----<span class="icon-space"></span>leehaira</td>
+							<td><p>Cửa hàng 1</p></td>
+							<td style="text-align:center;"><span class="action-cancel"></span></td>
+							<td style="text-align:center;"><a href="">Sửa</a></td>
+							<td style="text-align:center;"><a href="">Xóa</a></td>
+						</tr>
+                        <tr class="tr-3">
+							<td><input name="check-one" type="checkbox" value="1" /></td>
+							<td style="text-align:left">------leehaira</td>
+							<td><p>Cửa hàng 1</p></td>
+							<td style="text-align:center;"><span class="action-cancel"></span></td>
+							<td style="text-align:center;"><a href="">Sửa</a></td>
+							<td style="text-align:center;"><a href="">Xóa</a></td>
+						</tr>
+                        <tr class="tr-4">
+							<td><input name="check-one" type="checkbox" value="1" /></td>
+							<td style="text-align:left">--------leehaira</td>
+							<td><p>Cửa hàng 1</p></td>
+							<td style="text-align:center;"><span class="action-cancel"></span></td>
+							<td style="text-align:center;"><a href="">Sửa</a></td>
+							<td style="text-align:center;"><a href="">Xóa</a></td>
+						</tr>
+                        <tr class="tr-5">
+							<td><input name="check-one" type="checkbox" value="1" /></td>
+							<td style="text-align:left">----------leehaira</td>
+							<td><p>Cửa hàng 1</p></td>
+							<td style="text-align:center;"><span class="action-cancel"></span></td>
+							<td style="text-align:center;"><a href="">Sửa</a></td>
+							<td style="text-align:center;"><a href="">Xóa</a></td>
+						</tr>
+                        <tr>
+							<td><input name="check-one" type="checkbox" value="1" /></td>
+							<td style="text-align:left"><a class="icon-plus-new"></a>leehaira</td>
+							<td><p>Cửa hàng 1</p></td>
+							<td style="text-align:center;"><span class="action-cancel"></span></td>
+							<td style="text-align:center;"><a href="">Sửa</a></td>
+							<td style="text-align:center;"><a href="">Xóa</a></td>
+						</tr>
+					</tbody>
+				</table>
+                <div class="control-group">
+                	<button type="button" class="btn">Xoá đã chọn</button>
+                        <div class="pagination pagination-right pull-right">
+                            <ul>
+                                <li class="disabled"><a href="#">«</a></li>
+                                <li class="active"><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">...</a></li>
+                                <li><a href="#">»</a></li>
+                           	</ul>
+                       </div>
+                </div><!--control-group-->
+            </div><!--form-horizontal-->
+        </div><!--folder-content-->
+		<hr />
+		<footer>
+			<p>&copy; APPOTA 2012</p>
+		</footer>
+    </div><!--container-->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/jquery.ui.core.js"></script>
+    <script src="js/jquery.ui.datepicker.js"></script>
+    <script src="js/jquery.ui.datepicker-vi.js"></script>
+    <script src="js/datepicker.js"></script>
+</body>
+</html>
