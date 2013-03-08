@@ -19,7 +19,7 @@
 <div id = "container">
     <h3 align="center">Quản lý mẫu tin nhắn</h3>
     <div id="add_id" style="margin-left: 1150px; margin-bottom: 20px; cursor: pointer;"><img src="<?=base_url();?>public/img/table_plus.png" alt="Thêm mới"></div>
-    <table width="100%" border="1" cellpadding="0" cellspacing="0">
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table table-bordered table-hover">
         <tr align="center" style="color: red;">
             <td>STT</td>
             <td>Tiêu đề</td>

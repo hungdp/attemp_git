@@ -3,3 +3,55 @@ input.btn{
         color:#fff;
         text-shadow: 0 1px 0 rgba(0,0,0,2);
     }
+fieldset{
+       border-radius:8px;
+       -webkit-border-radius:8px; 
+       -moz-border-radius:8px;
+       border:1px solid #0097CC;
+       margin: 0px 8px 8px 8px;
+       padding: 5px;
+    }
+    legend{
+       color: #0097CC; 
+    }
+    #receiver_fieldset{
+        width: 450px;
+        float: left;
+        height: 150px;
+    }
+    #receiver_number_fieldset{
+        width: 600px;
+        height: 150px;
+        padding-left: 20px;
+    }
+th{
+    font-weight: bold;
+    
+}
+.ui-datepicker-calendar{
+    width: 190px;
+}
+#ui-datepicker-div{
+    background-color: antiquewhite;
+}
+#pagination_nav{
+    width: 25px;
+    margin-left: 400px;
+    margin-top: 20px;
+}
+#pagination_nav ul{
+    list_style:none;
+}
+#pagination_nav li{
+    display:inline; 
+    padding: 8px 12px;
+    border:1px solid;
+    color:#555;
+    margin-left:3px;
+    font-size: 1.3em;
+}
+
+#pagination_nav li a{
+    text-decoration: none;
+    
+}   

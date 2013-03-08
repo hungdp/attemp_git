@@ -1,32 +1,4 @@
- <style type="text/css">
-    fieldset{
-       border-radius:8px;
-       -webkit-border-radius:8px; 
-       -moz-border-radius:8px;
-       border:1px solid #0097CC;
-       margin: 0px 8px 8px 8px;
-       padding: 5px;
-    }
-    legend{
-       color: #0097CC; 
-    }
-    #receiver_fieldset{
-        width: 450px;
-        float: left;
-        height: 150px;
-    }
-    #receiver_number_fieldset{
-        width: 600px;
-        height: 150px;
-        padding-left: 20px;
-    }
-    input.btn{
-        background: #14afda;
-        color:#fff;
-        text-shadow: 0 1px 0 rgba(0,0,0,2);
-    }
-    
- </style>
+ 
  <script type="text/javascript">
     $(document).ready(function(){
          $('#template_choice').click(function(){
@@ -83,7 +55,8 @@
                    $('#content_message').focus();
                    return false;
                }
-               
+               //do dai ban tin gui di
+               data['message_length'] = $('span.mess_length').text();// alert(data['message_length']);
                //validate data ok, send to controller to proccess
                $('#send_message_id').load('<?=base_url();?>message/send_sms',data,function(result){});  
         });

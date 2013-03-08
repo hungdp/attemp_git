@@ -117,6 +117,86 @@ class Model extends CI_Model
         $query = $this->db->get($table);
         return $query->result_array();
     }
+    //get data with in array condition
+    public function get_where_in($table,$key,$in_array){
+        $this->db->where_in($key,$in_array);
+        $query = $this->db->get($table);
+        return $query->result_array();   
+    }
+    
+    //function get data for search proccess
+    public function get_data_search($action,$limit=FALSE,$start_from=FALSE){
+        
+        $this->db->where('sms.user_id',$this->session->userdata('user_id'));
+        
+        //check xem co lay thong so dien thoai ko
+        
+        /*if($this->session->userdata('number')!=''){
+            $this->db->like('receivers',$this->session->userdata('number')); 
+            //echo "1|";
+        }*/
+        
+        //check xem co lay  thong trang thai tin nhan ko
+        if($this->session->userdata('status')!=''){
+            $this->db->where('status',$this->session->userdata('status'));
+            //echo "2|";
+        }
+        
+        //check xem co lay theo noi dung hay ko
+        if($this->session->userdata('message')!=''){
+            $this->db->like('message',$this->session->userdata('message'));
+            //echo "3|";
+        }
+        
+        //check theo thoi gian gui tu ngay
+        if($this->session->userdata('from_date')!=''&&$this->session->userdata('end_date')==''){
+            //echo "4|";
+            $from =  $this->display_lib->timeDatabase($this->session->userdata('from_date'));
+            $sql = "(DATEDIFF(create_time,'".$from."')>=0)";    
+            $this->db->where($sql);
+        }else if($this->session->userdata('from_date')==''&&$this->session->userdata('end_date')!=''){ //lay den ngay
+            //echo "5|";
+            $end =  $this->display_lib->timeDatabase($this->session->userdata('end_date'));
+            $sql = "(DATEDIFF(create_time,'".$end."')<=0)";
+            $this->db->where($sql);
+        }else if($this->session->userdata('from_date')!=''&&$this->session->userdata('end_date')!=''){   //lay trong khoang
+            //echo "6|";
+            $from =  $this->display_lib->timeDatabase($this->session->userdata('from_date'));
+            $end =  $this->display_lib->timeDatabase($this->session->userdata('end_date'));
+            $sql = "(DATEDIFF(create_time,'".$from."')>=0 AND DATEDIFF(create_time,'".$end."')<=0)";
+            $this->db->where($sql);
+        }
+        //lay tu bang sms
+        $this->db->from('sms');
+        
+        //update join voi bang sms_receiver de lay so dien thoai nguoi nhan
+        $this->db->join('sms_receiver','sms.sms_id=sms_receiver.sms_id');
+        if($this->session->userdata('number')!=''){
+            $this->db->like('sms_receiver.receiver',$this->session->userdata('number')); 
+            //echo "1|";
+        }
+        
+        //check xem co lay theo he dieu hanh ko 
+        if($this->session->userdata('operator')!=''){
+            //echo "7|";
+            $this->db->where('operator_id',$this->session->userdata('operator'));
+            $this->db->join('customers','sms_receiver.receiver=customers.customer_mobile');   
+        }
+
+        //end update
+        //neu dem tong so ban ghi
+        if($action=='count'){
+            $query = $this->db->count_all_results();
+        }else{ //lay ban ghi tu vi tri start from;
+            if(isset($limit)&&isset($start_from)){
+                $this->db->limit($limit,$start_from);
+            }
+            $query = $this->db->get();
+            $query = $query->result_array();
+        }
+        
+        return $query;
+    }
 }
 
 ?>

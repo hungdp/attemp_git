@@ -12,7 +12,7 @@
     <link href="public/css/bootstrap.css" rel="stylesheet" />
     <link href="public/css/bootstrap-responsive.css" rel="stylesheet" />
     <link href="public/css/content.css" rel="stylesheet" />
-    <link href="public/css/private_style.css" rel="stylesheet" />
+    <link href="<?=base_url();?>public/css/private_style.css" rel="stylesheet" />
     <script type="text/javascript" src="<?=base_url();?>public/js/jquery.js"></script>
     <script type="text/javascript" src="<?=base_url();?>public/js/private_function.js"></script>
 </head>
@@ -62,15 +62,13 @@
                         <ul class="dropdown-menu">
                             <li><a href="<?=base_url();?>message/template">Quản lý mẫu tin</a></li>
                             <li><a href="<?=base_url();?>message/send_message">Gửi mới tin nhắn</a></li>
-                            <li><a href="#">Thống kê tin nhắn</a></li>  
+                            <li><a href="<?=base_url();?>message/history">Thống kê tin nhắn</a></li>  
                         </ul>
                     </li>
-                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Người dùng<b class="caret"></b></a>
+                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Quản lý thiết bị<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Danh sách người dùng</a></li>
-                            <li><a href="#">Quản lý phân quyền</a></li>
-                            <li><a href="#">Nhóm người dùng</a></li>
-                            <li><a href="#">Danh sách quyền</a></li>
+                            <li><a href="#">Thông tin thiết bị</a></li>
+                            <li><a href="<?=base_url();?>modem/operator">Quản lý hệ điều hành</a></li>
                         </ul>
                     </li>
                     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Hệ thống<b class="caret"></b></a>
@@ -98,5 +96,9 @@
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="public/js/jquery.js"></script>
 <script src="public/js/bootstrap.js"></script>
+<script src="public/js/jquery.ui.core.js"></script>
+<script src="public/js/jquery.ui.datepicker.js"></script>
+<script src="public/js/jquery.ui.datepicker-vi.js"></script>
+<script src="public/js/datepicker.js"></script>
 </body>
 </html>
