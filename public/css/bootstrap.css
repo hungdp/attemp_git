@@ -3211,7 +3211,7 @@ input[type="button"].btn-block {
   border-color: rgba(0, 0, 0, 0.15) rgba(0, 0, 0, 0.15) rgba(0, 0, 0, 0.25);
 }
 
-.btn-primary {
+.btn-primary,.btn-primary1,.btn-add{
   color: #ffffff;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
   background-color: #006dcc;
@@ -3232,7 +3232,17 @@ input[type="button"].btn-block {
 .btn-primary:active,
 .btn-primary.active,
 .btn-primary.disabled,
-.btn-primary[disabled] {
+.btn-primary[disabled],
+.btn-primary1:hover,
+.btn-primary1:active,
+.btn-primary1.active,
+.btn-primary1.disabled,
+.btn-primary1[disabled],
+.btn-add:hover,
+.btn-add:active,
+.btn-add.active,
+.btn-add.disabled,
+.btn-add[disabled]{
   color: #ffffff;
   background-color: #0044cc;
   *background-color: #003bb3;
@@ -3264,7 +3274,8 @@ input[type="button"].btn-block {
 .btn-warning:active,
 .btn-warning.active,
 .btn-warning.disabled,
-.btn-warning[disabled] {
+.btn-warning[disabled],
+ {
   color: #ffffff;
   background-color: #f89406;
   *background-color: #df8505;
@@ -5002,7 +5013,8 @@ input[type="submit"].btn.btn-mini {
 }
 
 .modal.fade.in {
-  top: 50%;
+  top: 60%;
+  left:60%;
 }
 
 .modal-header {

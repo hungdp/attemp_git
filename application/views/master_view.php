@@ -67,7 +67,7 @@
                     </li>
                     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Quản lý thiết bị<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Thông tin thiết bị</a></li>
+                            <li><a href="<?=base_url();?>modem/show">Thông tin thiết bị</a></li>
                             <li><a href="<?=base_url();?>modem/operator">Quản lý hệ điều hành</a></li>
                         </ul>
                     </li>

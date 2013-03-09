@@ -71,8 +71,8 @@
     <fieldset>
         <legend>Thống kê tin nhắn</legend>
         <p style="font-style: italic;font-size: 1.3em;">Tổng số tin nhắn tìm thấy: <span class="total" style="color: red;"><?=$total;?></span></p>
-        <table width="90%" border="1" cellpadding="0" cellspacing="0">
-            <tr align="center" style="color: blue; font-size: 1.1em;">
+        <table width="90%" border="0" cellpadding="0" cellspacing="0" class="table table-bordered table-hover">
+            <tr align="center" style="color: blue; font-size: 1.1em;" class="info">
                 <td>STT</td>
                 <td>Ngày gửi</td>
                 <td>Người gửi</td>

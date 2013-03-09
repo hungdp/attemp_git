@@ -14,6 +14,13 @@
                 return false;
             }
         });
+        //dem do dai tin nhan
+         $('textarea[name=content_template]').keyup(function(){
+            countMessageLength();
+        });
+        $('textarea[name=content_template]').focus(function(){
+            countMessageLength();
+        });
     });
 </script>
 <div id="container">
@@ -23,19 +30,24 @@
     <table width="60%" align="center" style="margin-left: 350px; padding-top: 30px;">       
         <tr>
             <th>Tiêu đề</th>
-            <td><input type="text" name="title" value=""></td>
+            <td><input type="text" name="title" value="" style="width: 275px;"></td>
         </tr>
         <tr>
             <th>Nội dung</th>
-            <td><textarea cols="50" rows="4" class="textarea" name="content_template"></textarea></td>
+            <td><textarea cols="50" rows="4" class="textarea" name="content_template" id="content_message" style="width:275px;"></textarea></td>
         </tr>
+        <tr>
+            <td></td>
+            <td>Số kí tự <span class="count" style="color: red;"></span> số tin nhắn <span class="mess_length" style="color: red;"></span></td>
+        </tr> 
         <tr>
             <td align="right">
                 <input type="submit" name="save_bt" value="Tạo mới" class="btn"></td>
             <td align="left">
                 <input type="button" name="back_bt" value="Quay lại" onclick="history.back();" class="btn">
             </td>
-        </tr>         
+        </tr>
+                
     </table>
     </form>
-</div>
+</div>         

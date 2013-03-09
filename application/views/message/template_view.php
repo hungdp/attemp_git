@@ -11,8 +11,8 @@
  </script>
  <div id="result_id"></div>
 <div id = "template_id">                                                             
-    <table width="100%" border="1" cellpadding="0" cellspacing="0">
-        <tr align="center" style="color: red;">
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table table-bordered table-hover">
+        <tr align="center" style="color: red;" class="info">
             <td>Chọn</td>
             <td>Tiêu đề</td>
             <td>Nội dung</td>  

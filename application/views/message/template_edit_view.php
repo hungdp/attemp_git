@@ -14,6 +14,14 @@
                 return false;
             }
         });
+        
+        //dem do dai tin nhan
+         $('textarea[name=content_template]').keyup(function(){
+            countMessageLength();
+        });
+        $('textarea[name=content_template]').focus(function(){
+            countMessageLength();
+        });
     });
 </script>
 <div id="container">
@@ -25,11 +33,15 @@
         <input type="hidden" name="template_id_txt" value="<?=$rs['template_id'];?>">        
         <tr>
             <th>Tiêu đề</th>
-            <td><input type="text" name="title" value="<?=$rs['title'];?>"></td>
+            <td><input type="text" name="title" value="<?=$rs['title'];?>" style="width: 275px;"></td>
         </tr>
         <tr>
             <th>Nội dung</th>
-            <td><textarea cols="50" rows="4" class="textarea" name="content_template"><?=$rs['content'];?></textarea></td>
+            <td><textarea cols="50" rows="4" class="textarea" name="content_template" id="content_message" style="width: 275px;"><?=$rs['content'];?></textarea></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>Số kí tự <span class="count" style="color: red;"></span> số tin nhắn <span class="mess_length" style="color: red;"></span></td>
         </tr>
         <tr>
             <td align="right">

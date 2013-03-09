@@ -5,7 +5,8 @@
           $this->load->Model('model'); 
           $session = array('user_id'=>2,'username'=>'tiennt','group_id'=>1);
           $this->session->set_userdata($session);  
-          $this->load->library('display_lib');
+          $this->load->library('display_lib');  
+          
       }
       
       //function template management
