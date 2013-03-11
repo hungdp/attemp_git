@@ -30,20 +30,55 @@
             return $date[2].'-'.$date[1].'-'.$date[0];
         }
         
-        /* Hàm gửi tin nhắn send_message
+        /** Ham gui tin nhan send_message
         * input params: receivers, message
-        * receivers là một chuỗi các số điện thoại người nhận cách nhau dấu phẩy (,)
-        * message là nội dung tin nhắn gửi đi
+        * receivers la mot chuoi so dien thoai nguoi nhan, moi so cach nhau dau phay vd: 84971234567,84987654321,...
+        * message la noi dung tin nhan gui di
         * output param: status 
-        * status là trạng thái nhận về sau khi gửi dữ liệu có thể là 3 trạng thái
-        *  - thành công
-        *  - thất bại
-        *  - đang đợi
+        * status la trang thai tin nhan sau khi gui di co the la 1 trong 3 trang thai
+        *  - thanh cong
+        *  - that bai
+        *  - dang doi
         * 
         * */
-        public function send_message($receivers,$message,&$status){
-             //thuc hien gui du lieu di va nhận về trạng thái status
+        public function send_message($receivers,$message,$count_message){
+             /***
+             * thuc hien gui du lieu di va nhan ve trang thai $status
+             * neu gui thanh cong $status=1;
+             * neu gui that bai $status=0;
+             * neu o trang thai dang doi $status=2;
+             */
+             
+             $status = 1;
+             /*thuc hien chen vao db sau khi gui*/
+             $data = array('create_time'=>date('Y-m-d',time()),'message'=>$message,
+                 'message_length'=>$count_message,'status'=>$status,
+                 'user_id'=>$this->session->userdata('user_id'));
+             
+             return $status;
         }
+        
+        /**
+        * ham lay thong tin trang thai cua modem
+        * @input param: $modem_id
+        *  - $modem_id la id cua modem trong database
+        * @param out: $data la mang du lieu chua cac thong tin ve modem gom:
+        * $data['status']=1 or 0 tuong ung trang thai kha dung hay khong kha dung
+        * $data['sms_total'] la tong so sms da gui di cua modem do
+        * $data['sms_avail'] la tong so sms con lai co the gui duoc cua modem
+        */
+        public function get_modem_status($modem_id){
+            $data = array();
+            /***
+            * thuc hien lay cac thong tin ve
+            * $data['status']
+            * $data['sms_total']
+            * $data['sms_avail']
+            * 
+            */
+            return $data;
+        }
+        
     }
   
 ?>

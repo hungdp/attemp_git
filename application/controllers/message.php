@@ -1,17 +1,21 @@
 <?php
   class Message extends CI_Controller{
       public function __construct(){
-          parent::__construct();     
-          $this->load->Model('model'); 
-          $session = array('user_id'=>2,'username'=>'tiennt','group_id'=>1);
-          $this->session->set_userdata($session);  
-          $this->load->library('display_lib');  
+          parent::__construct();  
+          $this->load->library('display_lib');
+          $this->load->library('pagination_lib');
+          
+          $this->load->model('model');
+          $this->load->database();
+          $this->Model = new Model;
+          $this->load->library('base');  
+          $this->base->checkRoles();
           
       }
       
       //function template management
       public function template(){
-            $data = array();
+            $data=$this->base->base_data();
             $data['content'] = 'message/template_show_view';
             $data['data'] =  $this->model->getData('template',array('user_id'=>$this->session->userdata('user_id')));  
             $this->load->view('master_view',$data);
@@ -19,7 +23,7 @@
       
       //function edit template
       public function template_edit($id){
-          $data = array();
+          $data=$this->base->base_data();
           $data['data'] = $this->model->getData('template',array('user_id'=>$this->session->userdata('user_id'),'template_id'=>$id));
           if(count($data['data'])==0){
               $data['error_info'] = 'Có lỗi xảy ra, yêu cầu của bạn không đúng hoặc không tồn tại';
@@ -40,7 +44,8 @@
             $content = $this->display_lib->stripUnicode($content);
             $data = array('title'=>$title,'content'=>$content);
             $result = $this->model->update('template_id',$template_id,'template',$data);
-            $data = array();
+            $data=$this->base->base_data();
+            
             if($result>0){  
                 $data['error_info'] = 'Cập nhật mẫu tin nhắn thành công';
             }else{     
@@ -54,6 +59,7 @@
       //public function add new template
       public function template_new(){
           $data = array();
+          $data=$this->base->base_data(); 
           if($this->input->post('save_bt')!=''){
              $title = $this->input->post('title');
              $content = $this->input->post('content_template');
@@ -77,7 +83,7 @@
       
       //function delete template
       public function template_delete(){
-          $data = array();
+          $data = array();      
           $template_id = $this->input->post('template_id');
           $result = $this->model->delete('template','template_id',$template_id);
           echo "<script>";
@@ -94,6 +100,7 @@
       //send message to customer 
       public function send_message(){
           $data = array();
+          $data=$this->base->base_data();
           $data['content'] = 'message/new_message_view';
           $data['operator'] = $this->model->getData('operator');
           $this->load->view('master_view',$data);
@@ -109,25 +116,29 @@
       public function send_sms(){
           //get information to send message
           $operator = $this->input->post('operator'); 
-          //neu lay theo he dieu hanh dien thoại, lay thong tin khah hang
-          $receiver_operator = array();
-          if(count($operator)!=0){
-              $receiver_operator = $this->model->get_where_in('customers','operator_id',$operator);
-              
-          }
-          echo "<pre>";
-          print_r($receiver_operator);
-          echo "</pre>";
           //lay danh sach so dien thoai khi khak hang nhap vao
           $numbers = $this->input->post('numbers');
-          $mess_count = $this->input->post('message_length');    echo $mess_count;
+          $mess_count = $this->input->post('message_length');    //echo $mess_count;
+          $receiver_send ="";
           if($numbers!=''){
               $receiver = explode(',',$numbers);
               foreach($receiver as $item){
                   //chuyen ve dinh dang 849839...
-                  $item = preg_replace('/^0/','84',$item); 
+                  $item = preg_replace('/^0/','84',$item);
+                  $receiver_send=$receiver_send.$item.","; 
               }
           }
+          //neu lay theo he dieu hanh dien thoại, lay thong tin khah hang
+          $receiver_operator = array();
+          if(count($operator)!=0){
+              $receiver_operator = $this->model->get_where_in('customers','operator_id',$operator);
+              foreach($receiver_operator as $rs){
+                  $receiver_send = $receiver_send.$rs['customer_mobile'].",";
+              }
+          }
+          $receiver_send =substr($receiver_send,0,-1); 
+          echo $receiver_send;
+          
           
           //lay noi dung tin nhan va chuyen ve dang tieng viet ko dau  
           $message = $this->input->post('message');
@@ -138,6 +149,7 @@
       
       //chuc năng thông ke tin nhắn
       public function history(){
+          $data=$this->base->base_data();
           //khi co thong tin tim kiem
           if($this->input->post('submit_search')=='Tìm'){
                $number = $this->input->post('txt_number');
@@ -187,6 +199,7 @@
                redirect(base_url().'message/search/inbox');
                
           }else{
+              
               $data['content'] = 'message/message_history_view';
               //lay thong tin ve he dieu hanh de thong ke
               $data['operator'] = $this->model->getData('operator');
@@ -197,10 +210,11 @@
       //function get all data search
       public function search($action,$start_from=0){
           //load library
+          $data=$this->base->base_data();
           $this->load->library(array('pagination','pagination_lib')); 
           $limit = 3; //gioi han so ban ghi tren trang  
           $total = $this->model->get_data_search('count');   //tong so ban ghi lay duoc
-          $data['total'] = $total;
+          $data['total'] = $total;  
           //config phan trang
           $settings = $this->pagination_lib->get_settings('sms',$action,$total,$limit); 
           $this->pagination->initialize($settings);

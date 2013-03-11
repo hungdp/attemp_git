@@ -5903,3 +5903,6 @@ a.badge:hover {
 .affix {
   position: fixed;
 }
+.help-block {
+    color: #B94A48;
+}

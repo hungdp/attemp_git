@@ -197,6 +197,14 @@ class Model extends CI_Model
         
         return $query;
     }
+    
+    /**
+     * Function delete all data in table
+     * @param $table
+     */
+    function deleteAll($table){
+        $this->db->empty_table(''.$table.'');
+    }
 }
 
 ?>

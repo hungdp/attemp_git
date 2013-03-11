@@ -1,12 +1,21 @@
 <?php if(! defined('BASEPATH')) exit("No direct script access allowed");
   class Modem extends CI_Controller{
-      public function __construc(){
+      public function __construct(){
           parent::__construct();
+          $this->load->library('display_lib');
+          $this->load->library('pagination_lib');
+          
+          $this->load->model('model');
+          $this->load->database();
+          $this->Model = new Model;
+          $this->load->library('base');  
+          $this->base->checkRoles();
       }
       
       //function quan lý hệ điều hành
       public function operator(){
             $data = array();
+            $data=$this->base->base_data();
             $data['content'] = 'modem/operator_show_view';
             $data['data'] =  $this->model->getData('operator');  
             $this->load->view('master_view',$data);
@@ -64,6 +73,7 @@
       */
       public function show(){
           $data = array();
+          $data=$this->base->base_data();
           $data['content'] = 'modem/modem_management_view';
           $data['modem'] = $this->model->getData('modem');
           $this->load->view('master_view',$data);

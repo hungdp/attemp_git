@@ -50,7 +50,7 @@
         });
         
         //khi cap nhat he dieu hanh
-        $('a.btn').click(function(){
+        $('a.btn1').click(function(){
             var id = $(this).attr('name');
             var name = $(this).attr('title');
             $('input[name=edit_operator_name]').attr('value',name);
@@ -164,7 +164,7 @@
                     <tr align="center">
                         <td><?=$i;?></td>
                         <td><?=$rs['operator_name'];?></td> 
-                        <td><a href="#editModal" role="button" class="btn" data-toggle="modal" name="<?=$rs['operator_id'];?>" title="<?=$rs['operator_name'];?>"><img src="<?=base_url();?>/public/img/x-mini-edit.png" alt="edit"></a></td> 
+                        <td><a href="#editModal" role="button" class="btn1" data-toggle="modal" name="<?=$rs['operator_id'];?>" title="<?=$rs['operator_name'];?>"><img src="<?=base_url();?>/public/img/x-mini-edit.png" alt="edit"></a></td> 
                         <td><a href="#delModal" role="button" class="btn-del" data-toggle="modal" name="<?=$rs['operator_id'];?>" title="<?=$rs['operator_name'];?>"><img src="<?=base_url();?>/public/img/x-mini-delete.png" alt="edit"></a></td>  
                     </tr>
                <?php $i++; endforeach;?>

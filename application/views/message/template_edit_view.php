@@ -22,6 +22,8 @@
         $('textarea[name=content_template]').focus(function(){
             countMessageLength();
         });
+        //dem so ki tu ban dau
+        countMessageLength();
     });
 </script>
 <div id="container">
