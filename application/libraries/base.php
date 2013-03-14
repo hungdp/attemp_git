@@ -33,8 +33,13 @@ class Base extends CI_Controller
             $action = $this->uri->segment(1).'/'.$this->uri->segment(2);
         }else{
             $action = $this->uri->segment(1);
+
         }
         #END GET ACTION
+        $id = preg_replace('/[^0-9]/','',$action);
+        if($id){
+            $action = preg_replace( "#[^a-zA-Z]#", "", $action);
+        };
         $roles = $this->Model->get_one('role', 'action', $action);
         $groupRoles = $this->Model->get_data('group_role', array('role_id '=>$roles->row()->role_id,'group_id'=>$groupId));
         if ($groupRoles->num_rows() > 0) {
@@ -46,8 +51,8 @@ class Base extends CI_Controller
     }
 
     public function do_upload()
-    {     
-        $config['upload_path'] = $_SERVER['DOCUMENT_ROOT'].'/public/import/'; 
+    {
+        $config['upload_path'] = $_SERVER['DOCUMENT_ROOT'].'/public/import/';
         $config['allowed_types'] = 'txt|xls';
         $config['max_size']    = '50000';
         $this->load->library('upload',$config);
@@ -61,14 +66,6 @@ class Base extends CI_Controller
             $data = array('upload_data' => $this->upload->data());
         }   
         return $data;
-    }
-
-    public function nopermission()
-    {
-        $data=$this->base->base_data();
-        $data['title']='Lỗi';
-        $data['content']='false_view';
-        $this->load->view('master_view',$data);
     }
 
 }

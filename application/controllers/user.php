@@ -79,12 +79,21 @@ class user extends CI_Controller
     }
 
     /**
-     *Function delete user
-     * @param $user_id
+     *Function delete
      */
-    function delete($user_id)
+    function delete()
     {
-        $this->Model->delete('users', 'user_id', $user_id);
-        redirect(base_url() . 'user', 'location');
+        if($this->input->is_ajax_request()) //Check if the request is ajax request
+        {
+            $user = $this->Model->get_data('users');
+            if($user->num_rows() == 1){
+                echo json_encode(array('err' => 1, 'msg' => 'Không được xóa khi chỉ còn 1 thành viên.'));
+            }else{
+                $user_id = $_POST['id'];
+                $this->Model->delete('users', 'user_id', $user_id);
+                echo json_encode(array('err' => 0, 'msg' => 'Xóa thành công'));
+            }
+        }
     }
+
 }

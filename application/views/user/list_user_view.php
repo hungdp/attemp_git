@@ -29,13 +29,13 @@
             <?php
                 for($i=0;$i<$user->num_rows();$i++){
             ?>
-            <tr>
+            <tr class="user-<?=$user->row($i)->user_id?>">
                 <td><?=$user->row($i)->user_id?></td>
                 <td><?=$user->row($i)->usename?></td>
                 <td><?=$user->row($i)->name?></td>
                 <td><?=$user->row($i)->email?></td>
                 <td><a href="<?=base_url()?>user/edit/<?=$user->row($i)->user_id?>">Sửa</a></td>
-                <td><a data-confirm="Are you sure you want to delete?" href="<?=base_url()?>user/delete/<?=$user->row($i)->user_id?>">Xóa</a></td>
+                <td><a onclick="deleteUser(<?=$user->row($i)->user_id?>)">Xóa</a></td>
             </tr>
             <?php
                 }

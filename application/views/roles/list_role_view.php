@@ -35,7 +35,7 @@
                 <td><?=$role->row($i)->action?></td>
                 <td><?=$role->row($i)->description?></td>
                 <td><a href="<?=base_url()?>roles/edit/<?=$role->row($i)->role_id?>">Sửa</a></td>
-                <td><a data-confirm="Are you sure you want to delete?" href="<?=base_url()?>roles/delete/<?=$role->row($i)->role_id?>">Xóa</a></td>
+                <td><a data-confirm="Bạn có muốn xóa?" href="<?=base_url()?>roles/delete/<?=$role->row($i)->role_id?>">Xóa</a></td>
             </tr>
             <?php
               }

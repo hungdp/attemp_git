@@ -17,6 +17,26 @@ else
     $action='customers/action_customer/'.$customer_id;
 }
 ?>
+<style type="text/css">
+    .overlay{
+        background:url("<?=base_url();?>public/img/overlay.png") repeat top left;
+        position: fixed;
+        top:0px;
+        bottom: 0px;
+        left:0px;
+        right:0px;
+        z-index: 100;
+}
+div.sending{
+        position:fixed;
+        top:200px;
+        left:50%;
+        right: 30%;
+        z-index: 101;
+    }
+ </style>
+ <div class="overlay" style="display: none;"></div>
+ 
 <div class="folder-header">
     <h3>Quản trị danh sách khách hàng</h3>
 </div>
@@ -28,6 +48,7 @@ else
     </ul>
 </div>
 <div class="folder-content">
+<div class="sending" style="display: none;"><img src="<?=base_url();?>public/img/loadinfo.gif"/></div>
     <form action="<?=$action?>" class="form-horizontal" method="post" style="width:500px" enctype="multipart/form-data">
         <div class="control-group">
             <label class="control-label">Kiểu dữ liệu:</label>
@@ -83,11 +104,15 @@ else
             <div class="control-group">
             <label class="control-label">Chọn file:</label>
             <div class="controls">
-                <input type="file" name="userfile" size="60">  
-            </div>                                
+                <input type="file" name="userfile" size="60">
+                <!--<input id="lefile" type="file" style="display:none" name="userfile">
+                <div class="input-append">
+                    <input id="photoCover" class="input-large" type="text">
+                    <a class="btn" onclick="$('#lefile').click();">Chọn</a>
+                </div> -->
+            </div>
             <div style="margin-left: 120px;">Download <a href="<?=base_url().'customers/download/customers.xls';?>">file</a> excel mẫu</div>  
             <div style="margin-left: 120px;">Download <a href="<?=base_url().'customers/download/list.txt';?>">file</a> text mẫu</div>
-            
         </div>
         </div>
         <hr>
@@ -109,6 +134,18 @@ else
             else{
                 $('.import').show();
                 $('.default').hide();
+            }
+        });
+        $('.btn-primary').click(function(){
+            var type=0;
+            $('input[name=type]').each(function(){
+                if($(this).attr('checked')){
+                    type = $(this).attr('value');
+                }
+            });   
+            if(type!=1){            
+                $('div.sending').fadeIn('fast');
+                $('div.overlay').fadeIn('fast');
             }
         });
     });

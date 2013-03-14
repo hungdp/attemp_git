@@ -58,13 +58,35 @@
                //do dai ban tin gui di
                data['message_length'] = $('span.mess_length').text();// alert(data['message_length']);
                //validate data ok, send to controller to proccess
-               $('#send_message_id').load('<?=base_url();?>message/send_sms',data,function(result){});  
+               $('#send_message_id').load('<?=base_url();?>message/send_sms',data,function(result){});
+               $('div.sending').html('<img src="<?=base_url();?>public/img/loadinfo.gif"/>');
+               $('div.overlay').fadeIn('fast');  
         });
          
     });
  </script>
- 
+ <style type="text/css">
+    .overlay{
+        background:url("<?=base_url();?>public/img/overlay.png") repeat top left;
+        position: fixed;
+        top:0px;
+        bottom: 0px;
+        left:0px;
+        right:0px;
+        z-index: 100;
+}
+div.sending{
+        position:fixed;
+        top:200px;
+        left:50%;
+        right: 30%;
+        z-index: 101;
+    }
+ </style>
+  
+  <div class="sending"></div>
  <div id="container">
+ <div class="overlay" style="display: none;"></div>
     <div id="send_message_id"></div>
     <div id="receiver_id">
         <fieldset>
@@ -77,7 +99,7 @@
                         <td>Chưa có nhóm hệ điều hành nào được tạo</td>
                     <?php else:?>
                         <?php foreach($operator as $rs):?>
-                        <td><?=$rs['operator_name'];?>   <input type="checkbox" value="<?=$rs['operator_id'];?>" class="operator_cls" style="margin-bottom: 5px;"></td>
+                        <td><?=$rs['operator_name'];?><br> <input type="checkbox" value="<?=$rs['operator_id'];?>" class="operator_cls" style="margin-bottom: 5px;"></td>
                         <?php endforeach;?>
                     <?php endif;?>
                     </tr>

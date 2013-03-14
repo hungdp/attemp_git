@@ -117,15 +117,7 @@ public function get_settings($id,$name,$total,$limit)
             $config['num_links'] = 2;
 
             return $config;
-            break;
-        case 'sms_search':
-
-            $config['base_url'] = base_url().'sms_v1/smsSearch/'.$name;
-            $config['uri_segment'] = 4;
-            $config['num_links'] = 2;
-
-            return $config;
-            break;    
+            break;   
           
         case 'material_delete':
 

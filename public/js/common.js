@@ -26,9 +26,6 @@ function Popup(){
         popup.resetPos();
         
         $('#' + id).show('drop');
-        $('#' + id).draggable({
-            handle: $('#' + id + ' .modal-header')
-        });
         shadow.show();
         
         $('#' + id).resize(function(){

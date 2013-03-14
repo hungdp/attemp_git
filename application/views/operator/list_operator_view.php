@@ -31,7 +31,7 @@
                 <td><?=$operator->row($i)->operator_id?></td>
                 <td><?=$operator->row($i)->operator_name?></td>
                 <td><a href="<?=base_url()?>operator/edit/<?=$operator->row($i)->operator_id?>">Sửa</a></td>
-                <td><a data-confirm="Are you sure you want to delete?" href="<?=base_url()?>operator/delete/<?=$operator->row($i)->operator_id?>">Xóa</a></td>
+                <td><a data-confirm="Bạn có muốn xóa?" href="<?=base_url()?>operator/delete/<?=$operator->row($i)->operator_id?>">Xóa</a></td>
             </tr>
                 <?php
             }

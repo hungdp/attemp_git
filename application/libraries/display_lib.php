@@ -48,14 +48,37 @@
              * neu gui that bai $status=0;
              * neu o trang thai dang doi $status=2;
              */
-             
-             $status = 1;
+             $CI = & get_instance();
+             $status = $this->get_status(0,2);
              /*thuc hien chen vao db sau khi gui*/
-             $data = array('create_time'=>date('Y-m-d',time()),'message'=>$message,
-                 'message_length'=>$count_message,'status'=>$status,
-                 'user_id'=>$this->session->userdata('user_id'));
-             
-             return $status;
+             if($status!=0){
+                 $data = array('create_time'=>date('Y-m-d H:i:s',time()),'message'=>$message,
+                     'message_length'=>$count_message,'status'=>$status,
+                     'user_id'=>$CI->session->userdata('user_id'));
+                 while(true){//save vao db khi save xong se thoat
+                     $sms_id = $CI->model->insertData('sms',$data);
+                     if($sms_id>0){
+                         $save = false;
+                         $numbers = explode(',',$receivers);
+                         $insertReceiver = array();
+                         foreach($numbers as $value){
+                             $insertReceiver[] = array('sms_id'=>$sms_id,'receiver'=>$value); 
+                         }  
+                         while(true){
+                              $re = $CI->model->insert_batch('sms_receiver',$insertReceiver);
+                              if($re>0){
+                                  $save = true;
+                                  break;
+                              }
+                         }
+                         if($save==true){
+                             break;
+                         }
+                     }
+                 }
+                 return true;
+             }
+             return false;
         }
         
         /**
@@ -67,16 +90,54 @@
         * $data['sms_total'] la tong so sms da gui di cua modem do
         * $data['sms_avail'] la tong so sms con lai co the gui duoc cua modem
         */
-        public function get_modem_status($modem_id){
-            $data = array();
+        public function get_modem_status(){ 
             /***
             * thuc hien lay cac thong tin ve
             * $data['status']
             * $data['sms_total']
             * $data['sms_avail']
             * 
-            */
-            return $data;
+            */ 
+            $CI = & get_instance();
+            $modem = $CI->model->getData('modem');
+            foreach($modem as $rs){
+                $data = array();
+                $data['balance'] = $this->get_status(0,100000);
+                $data['total_sms'] = $this->get_status(0,1000000);
+                if($data['balance']!=0){
+                    $data['status'] = 1;
+                }else {
+                    $data['status'] = 0;
+                }             
+                $CI->model->update('modem_id',$rs['modem_id'],'modem',$data);
+            } 
+        }
+        /**
+        * get status when send sms or update status
+        * 
+        * @param mixed $min
+        * @param mixed $max
+        * @return int
+        */
+        public function get_status($min, $max){
+            return rand($min,$max);
+        }
+        
+        /**
+        * function update status
+        * @param:null
+        * 
+        */
+        public function update_status(){
+           $CI = & get_instance();
+           $CI->model->update_expire();
+           //get all messages have status=2 
+           $data = $CI->model->get_update_status();   
+           foreach($data as $rs){
+               $status = $this->get_status(0,2); 
+               $CI->model->update('sms_id',$rs['sms_id'],'sms',array('status'=>$status));
+           }
+           
         }
         
     }

@@ -172,7 +172,8 @@ class Model extends CI_Model
         //update join voi bang sms_receiver de lay so dien thoai nguoi nhan
         $this->db->join('sms_receiver','sms.sms_id=sms_receiver.sms_id');
         if($this->session->userdata('number')!=''){
-            $this->db->like('sms_receiver.receiver',$this->session->userdata('number')); 
+            $number = preg_replace('/^0/',84,$this->session->userdata('number'));
+            $this->db->like('sms_receiver.receiver',$number); 
             //echo "1|";
         }
         
@@ -187,6 +188,16 @@ class Model extends CI_Model
         //neu dem tong so ban ghi
         if($action=='count'){
             $query = $this->db->count_all_results();
+        }else if($action=='sum'){
+            $this->db->select_sum('sms.message_length');
+            $query = $this->db->get();
+            $query->result_array();
+            $query = $query->result_array();
+            if(count($query)!=0){
+                return $query[0]['message_length'];
+            }else{
+                return 0;
+            }
         }else{ //lay ban ghi tu vi tri start from;
             if(isset($limit)&&isset($start_from)){
                 $this->db->limit($limit,$start_from);
@@ -204,6 +215,44 @@ class Model extends CI_Model
      */
     function deleteAll($table){
         $this->db->empty_table(''.$table.'');
+    }
+    
+    /**
+    * function insert and return id of effected row
+    */
+    function insertData($table,$data){
+        $this->db->insert($table,$data);
+        return $this->db->insert_id();
+    }
+    
+    /**
+    * insert batch data
+    */
+    public function insert_batch($table,$data){
+        $this->db->insert_batch($table,$data);
+        return $this->db->affected_rows();  
+    }
+    
+    /**
+    * update status when expired time
+    */
+    public function update_expire(){
+        $this->db->where('user_id',$this->session->userdata('user_id'));
+        $this->db->where('status',2);
+        $sql = "(DATEDIFF(now(),create_time)>1)";
+        $this->db->where($sql);
+        $this->db->update('sms',array('status'=>0));
+    }
+    
+    /**
+    * get sms status =2
+    */
+    public function get_update_status(){
+        $this->db->select('sms_id');
+        $this->db->where('status',2);
+        $this->db->where('user_id',$this->session->userdata('user_id'));
+        $query = $this->db->get('sms');
+        return $query->result_array();
     }
 }
 

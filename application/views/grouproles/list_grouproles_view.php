@@ -49,38 +49,7 @@
             </tbody>
         </table>
         <div class="control-group">
-            <button type="button" onclick="edit()" class="btn btn-primary">Lưu thay đổi</button>
-        </div>
-        <!--control-group-->
-    </div>
-    <!--form-horizontal-->
+            <button type="button" onclick="editgrouproles()" class="btn btn-primary">Lưu thay đổi</button>
+        </div><!--control-group-->
+    </div><!--form-horizontal-->
 </div><!--folder-content-->
-<script type="text/javascript">
-    edit = function(){
-        var grouproles = [];
-        var i=0;
-        $('input[type=checkbox]').each(function(){
-            if($(this).is(':checked')){
-                grouproles[i] = {};
-                grouproles[i].groupId = parseInt($(this).attr('group'));
-                grouproles[i].roleId = parseInt($(this).attr('roles'));
-                i++;
-            }
-        });
-
-        popup.confirm("Bạn có chắc chắn muốn lưu danh sách phân quyền này?", function(){
-            $.ajax({
-                url: 'grouproles/ajax_submit',
-                type: 'post',
-                dataType: 'json',
-                data:{
-                    groupRoles:JSON.stringify(grouproles)
-                },
-                success: function() {
-                    popup.msg('Lưu thay đổi thành công');
-                }
-
-            });
-        });
-    }
-</script>

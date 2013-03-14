@@ -20,7 +20,7 @@
                             <td><?=$i;?></td>  
                             <td><?=$rs['modem_name'];?></td>  
                             <td><?=$rs['balance'];?></td>  
-                            <td>1000000</td>  
+                            <td><?=$rs['total_sms'];?></td>  
                             <td>
                                 <?php if($rs['status']==0) echo 'Không khả dụng'; else echo 'Khả dụng';?>
                             </td>  

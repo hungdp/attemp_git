@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <link rel="shortcut icon" href="img/favicon.ico" />
+    <link rel="Shortcut Icon" href="http://appota.com/images/appota.ico" type="image/x-icon">
     <!-- styles -->
     <link href="<?=base_url()?>public/css/bootstrap.css" rel="stylesheet" />
     <link href="<?=base_url()?>public/css/bootstrap-responsive.css" rel="stylesheet" />
@@ -46,8 +46,7 @@
                 <ul class="nav">
                     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Nội dung<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="<?=base_url()?>customers/">Danh sách khách hàng</a></li>
-                            <li><a href="<?=base_url()?>operator/">Danh sách hệ điều hành</a></li>
+                            <li><a href="<?=base_url()?>customers/">Danh sách khách hàng</a></li> 
                         </ul>
                     </li>
                     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Người dùng<b class="caret"></b></a>

@@ -16,6 +16,7 @@
       public function operator(){
             $data = array();
             $data=$this->base->base_data();
+            $data['title'] = 'Quản lý hệ điều hành';
             $data['content'] = 'modem/operator_show_view';
             $data['data'] =  $this->model->getData('operator');  
             $this->load->view('master_view',$data);
@@ -74,6 +75,8 @@
       public function show(){
           $data = array();
           $data=$this->base->base_data();
+          $this->display_lib->get_modem_status();
+          $data['title'] = 'Quản lý modem';
           $data['content'] = 'modem/modem_management_view';
           $data['modem'] = $this->model->getData('modem');
           $this->load->view('master_view',$data);

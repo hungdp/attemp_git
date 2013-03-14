@@ -70,7 +70,7 @@
     </form>   
     <fieldset>
         <legend>Thống kê tin nhắn</legend>
-        <p style="font-style: italic;font-size: 1.3em;">Tổng số tin nhắn tìm thấy: <span class="total" style="color: red;"><?=$total;?></span></p>
+        <p style="font-style: italic;font-size: 1.3em;">Tổng số tin nhắn tìm thấy: <span class="total" style="color: red;"><?=number_format($sum,0,'.',',');?></span></p>
         <table width="90%" border="0" cellpadding="0" cellspacing="0" class="table table-bordered table-hover">
             <tr align="center" style="color: blue; font-size: 1.1em;" class="info">
                 <td>STT</td>
@@ -90,7 +90,7 @@
                     <tr align="center">
                         <td><?=$i;?></td>
                         <td width="15%"><?=$rs['create_time'];?></td>
-                        <td><?=$this->session->userdata('username');?></td>
+                        <td><?=$this->session->userdata('sessionUserAdmin');?></td>
                         <td><?=$rs['receiver'];?></td>
                         <td width="30%"><?=$rs['message'];?></td>
                         <td><?=$rs['message_length'];?></td>

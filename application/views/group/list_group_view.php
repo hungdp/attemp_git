@@ -33,7 +33,7 @@
                 <td><?=$groups->row($i)->group_name?></td>
                 <td><?=$groups->row($i)->description?></td>
                 <td><a href="<?=base_url()?>group/edit/<?=$groups->row($i)->group_id?>">Sửa</a></td>
-                <td><a data-confirm="Are you sure you want to delete?" href="<?=base_url()?>group/delete/<?=$groups->row($i)->group_id?>">Xóa</a></td>
+                <td><a data-confirm="Bạn có muốn xóa?" href="<?=base_url()?>group/delete/<?=$groups->row($i)->group_id?>">Xóa</a></td>
             </tr>
             <?php
                 }

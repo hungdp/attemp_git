@@ -12,19 +12,25 @@ class customers extends CI_Controller
         parent::__construct();
         $this->load->library('base');
         $this->load->library('upload');
-        $this->base->checkRoles();  
+        $this->base->checkRoles();
         $this->load->database();
         $this->Model = new Model;
-        $this->load->library('base');  
-        $this->base->checkRoles();
     }
 
-    public function index()
+    public function index($start=null)
     {
+        if($start==null){
+            $start='0';
+        }
         $data = $this->base->base_data();
         $data['title'] = 'Quản trị danh sách khách hàng';
-        $data['customers'] = $this->Model->get_data('customers');
-        $data['count'] = $data['customers']->num_rows();
+        $data['customer'] = $this->Model->get_data('customers');
+        $data['operator'] = $this->Model->get_data('operator');
+        $data['count'] = $data['customer']->num_rows();
+        $display=10;
+        $data['customers']=$this->Model->get_data('customers', null, null, $start, $display);
+        $pag = new paginate();
+        $data['paginate'] = $pag->get_html(base_url().'customers/',$data['count'],$display);
         $data['content'] = 'customers/list_customers_view';
         $this->load->view('master_view', $data);
     }
@@ -55,12 +61,12 @@ class customers extends CI_Controller
         $this->load->view('master_view', $data);
     }
 
-     /**
+    /**
      * Function action add or edit customer
      * @param null $customer_id
      */
     function action_customer($customer_id = NULL)
-    {   $data = $this->base->base_data(); 
+    {   $data = $this->base->base_data();
         $type = $this->input->post('type');
         $user_id = $this->session->userdata('sessionIdAdmin');
         if($type == 1){
@@ -69,16 +75,15 @@ class customers extends CI_Controller
             $operator_id = $this->input->post('operator_id');
             $data = array('customer_name' => $customer_name, 'customer_mobile' => $customer_mobile, 'operator_id' => $operator_id, 'user_id' =>$user_id);
             if (!isset($customer_id)) {
-                 $this->Model->insert('customers', $data);
+                $this->Model->insert('customers', $data);
             } else {
-                 $this->Model->update('customer_id', $customer_id, 'customers', $data);
+                $this->Model->update('customer_id', $customer_id, 'customers', $data);
             }
         }elseif($type == 3){
-                #BEGIN TYPE = FILE TXT
+            #BEGIN TYPE = FILE TXT
             $file = $this->base->do_upload();
-            
             if(isset($file['upload_data']['full_path'])&&$file['upload_data']['file_ext']=='.txt'){
-                $v = file($file['upload_data']['full_path']); 
+                $v = file($file['upload_data']['full_path']);
                 $invalid=0;
                 $success = 0;
                 $duplicate = 0;
@@ -88,26 +93,26 @@ class customers extends CI_Controller
                     $custom_mobile = trim($txt[1]);
                     //check validate mobile
                     if (!preg_match('/^84/', $custom_mobile)){
-                            if (!preg_match('/^0/', $custom_mobile)){
-                                $custom_mobile = "84".$custom_mobile;
-                            }
-                            else {
-                                $custom_mobile = preg_replace('/^0/','84', $custom_mobile);
-                            }
+                        if (!preg_match('/^0/', $custom_mobile)){
+                            $custom_mobile = "84".$custom_mobile;
                         }
-                        
-                    if (preg_match('/^849(0|1|2|3|4|5|6|7|8)[0-9]{7}$/', $custom_mobile) or preg_match('/^8499(3|4|5|6)[0-9]{6}$/', $custom_mobile) or 
-                            preg_match('/8412[0-9][0-9]{7}$/', $custom_mobile) or preg_match('/^8416(2|3|4|5|6|7|8|9)[0-9]{7}$/', $custom_mobile) or 
-                            preg_match('/^84199[0-9]{7}$/', $custom_mobile)){
-                                $mobile = $custom_mobile;
+                        else {
+                            $custom_mobile = preg_replace('/^0/','84', $custom_mobile);
+                        }
+                    }
+
+                    if (preg_match('/^849(0|1|2|3|4|5|6|7|8)[0-9]{7}$/', $custom_mobile) or preg_match('/^8499(3|4|5|6)[0-9]{6}$/', $custom_mobile) or
+                        preg_match('/8412[0-9][0-9]{7}$/', $custom_mobile) or preg_match('/^8416(2|3|4|5|6|7|8|9)[0-9]{7}$/', $custom_mobile) or
+                        preg_match('/^84199[0-9]{7}$/', $custom_mobile)){
+                        $mobile = $custom_mobile;
                     }else{
-                            $mobile = '';
-                            $invalid++; 
+                        $mobile = '';
+                        $invalid++;
                     }
                     $operator_id = '';
                     if(isset($txt[2])&&trim($txt[2])!=''){
-                         $operator_info = $this->Model->getData('operator',array('operator_name'=>trim($txt[2])));
-                         if(count($operator_info)!=0){
+                        $operator_info = $this->Model->getData('operator',array('operator_name'=>trim($txt[2])));
+                        if(count($operator_info)!=0){
                             $operator_id = $operator_info[0]['operator_id'];
                         }
                     }
@@ -120,9 +125,8 @@ class customers extends CI_Controller
                             $duplicate++;
                         }
                     }
-                    
                 }
-                
+
                 unlink($file['upload_data']['full_path']);
                 $data['info'] = array('success'=>$success,'duplicate'=>$duplicate,'invalid'=>$invalid);
                 $data['content'] = 'customers/upload_info_view';
@@ -130,28 +134,28 @@ class customers extends CI_Controller
                 #END TYPE = FILE TXT
             }else{
                 $data['error_info'] = 'Bạn cần upload file text, upload thất bại!';
-                  $data['title'] = 'Error upload';
-                  $data['link_back'] = base_url().'customers/add';
-                  $data['content'] = 'information_view';
+                $data['title'] = 'Error upload';
+                $data['link_back'] = base_url().'customers/add';
+                $data['content'] = 'information_view';
             }
             $this->load->view('master_view', $data);
             return;
         }else{
-             #BEGIN TYPE = FILE excel
-            $file = $this->base->do_upload();  
+            #BEGIN TYPE = FILE excel
+            $file = $this->base->do_upload();
             if(isset($file['upload_data']['full_path'])&&$file['upload_data']['file_ext']=='.xls'){
                 $filename = $file['upload_data']['file_name'];
-                $data['info'] = $this->import_customers_xls($filename); 
+                $data['info'] = $this->import_customers_xls($filename);
                 $data['content'] = 'customers/upload_info_view';
                 $data['title'] = 'Information';
                 $data['link_back'] = base_url().'customers';
                 #END TYPE = FILE excel
             }else{
-                  $data['error_info'] = 'Bạn cần upload file excel, upload thất bại!';
-                  $data['title'] = 'Error upload';
-                  $data['link_back'] = base_url().'customers/add';
-                  $data['content'] = 'information_view'; 
-                   
+                $data['error_info'] = 'Bạn cần upload file excel, upload thất bại!';
+                $data['title'] = 'Error upload';
+                $data['link_back'] = base_url().'customers/add';
+                $data['content'] = 'information_view';
+
             }
             $this->load->view('master_view', $data);
             return;
@@ -168,26 +172,26 @@ class customers extends CI_Controller
         $this->Model->delete('customers', 'customer_id', $customer_id);
         redirect(base_url() . 'customers', 'location');
     }
-    
+
     /**
-    * read file excel from upload file
-    */
+     * read file excel from upload file
+     */
     public function import_customers_xls($file_name){
-        set_time_limit(0);                                                                                    
+        set_time_limit(0);
         include $_SERVER['DOCUMENT_ROOT'].'/application/my_classes/Classes/PHPExcel.php';
         include $_SERVER['DOCUMENT_ROOT'].'/application/my_classes/Classes/PHPExcel/Writer/Excel5.php';
         include $_SERVER['DOCUMENT_ROOT'].'/application/my_classes/Classes/Reader_Filter.php';
-        $cacheMethod = PHPExcel_CachedObjectStorageFactory:: cache_to_phpTemp; $cacheSettings = array( 'memoryCacheSize' => '8MB' ); 
+        $cacheMethod = PHPExcel_CachedObjectStorageFactory:: cache_to_phpTemp; $cacheSettings = array( 'memoryCacheSize' => '8MB' );
         PHPExcel_Settings::setCacheStorageMethod($cacheMethod, $cacheSettings);
         $objReader = new PHPExcel_Reader_Excel5();
         $objReader->setReadDataOnly(true);
-        
+
         $file_path = $_SERVER['DOCUMENT_ROOT'].'/public/import/';
         //$file_path = $_SERVER['DOCUMENT_ROOT'].'/smsloyalty/www/public/import/';
-        
+
         $chunkSize = 2000;
         $chunkFilter = new chunkReadFilter();
-        
+
         /**  Tell the Reader that we want to use the Read Filter that we've Instantiated  **/
         $objReader->setReadFilter($chunkFilter);
         $i = 0;
@@ -198,21 +202,21 @@ class customers extends CI_Controller
         for ($startRow = 2; $startRow <= 30000; $startRow += $chunkSize) {
             //$chunkFilter->setRows($startRow,$chunkSize);
             $chunkFilter->setRows($startRow,$chunkSize,range('A','C'));
-            $objPHPExcel = $objReader->load($file_path.$file_name); 
-        
+            $objPHPExcel = $objReader->load($file_path.$file_name);
+
             $rowIterator = $objPHPExcel->getActiveSheet()->getRowIterator();
-            
+
             foreach($rowIterator as $row){
                 $cellIterator = $row->getCellIterator();
                 foreach ($cellIterator as $cell) {
-                    
+
                     $column = $cell->getColumn();
                     $input_data = $cell->getCalculatedValue();
                     $input_data = trim($input_data);
-                    
+
                     if($column == 'A'){
                         $data[$i]['customer_name'] = $input_data;
-                    } 
+                    }
                     else if($column == 'B'){
                         $custom_mobile = $input_data;
                         //check validate mobile number
@@ -224,17 +228,17 @@ class customers extends CI_Controller
                                 $custom_mobile = preg_replace('/^0/','84', $custom_mobile);
                             }
                         }
-                        
-                        if (preg_match('/^849(0|1|2|3|4|5|6|7|8)[0-9]{7}$/', $custom_mobile) or preg_match('/^8499(3|4|5|6)[0-9]{6}$/', $custom_mobile) or 
-                            preg_match('/8412[0-9][0-9]{7}$/', $custom_mobile) or preg_match('/^8416(3|4|5|6|7|8|9)[0-9]{7}$/', $custom_mobile) or 
+
+                        if (preg_match('/^849(0|1|2|3|4|5|6|7|8)[0-9]{7}$/', $custom_mobile) or preg_match('/^8499(3|4|5|6)[0-9]{6}$/', $custom_mobile) or
+                            preg_match('/8412[0-9][0-9]{7}$/', $custom_mobile) or preg_match('/^8416(3|4|5|6|7|8|9)[0-9]{7}$/', $custom_mobile) or
                             preg_match('/^84199[0-9]{7}$/', $custom_mobile)){
-                                $data[$i]['customer_mobile'] = $custom_mobile;
+                            $data[$i]['customer_mobile'] = $custom_mobile;
                         }else{
                             $data[$i]['customer_mobile'] = '';
-                            $invalid++; 
+                            $invalid++;
                         }
-                        
-                    } 
+
+                    }
                     else if($column == 'C'){
                         $operator_name = $input_data;
                         //check hdh tuong ung
@@ -244,15 +248,15 @@ class customers extends CI_Controller
                         }else{
                             $data[$i]['operator_id'] = '';
                         }
-                        
+
                         break;
-                    } 
+                    }
                 }
                 $i=$i+1;
             }
-        
+
         }
-        
+
         unlink($file_path.$file_name);
         //insert vao db  
         foreach($data as $rs){
@@ -266,7 +270,7 @@ class customers extends CI_Controller
                 }
             }
         }
-        $result = array('success'=>$success,'duplicate'=>$duplicate,'invalid'=>$invalid);       
+        $result = array('success'=>$success,'duplicate'=>$duplicate,'invalid'=>$invalid);
         return $result;
     }
     
